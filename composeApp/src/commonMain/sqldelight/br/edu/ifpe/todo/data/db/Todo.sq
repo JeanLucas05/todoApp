@@ -1,0 +1,53 @@
+CREATE TABLE category (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE task (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    completed INTEGER NOT NULL DEFAULT 0,
+    due_at INTEGER,
+    created_at INTEGER NOT NULL,
+    category_id INTEGER REFERENCES category(id) ON DELETE SET NULL
+);
+
+selectAllCategories:
+SELECT * FROM category ORDER BY name COLLATE NOCASE;
+
+selectCategoryById:
+SELECT * FROM category WHERE id = ?;
+
+insertCategory:
+INSERT INTO category(name) VALUES (?);
+
+updateCategoryName:
+UPDATE category SET name = ? WHERE id = ?;
+
+deleteCategory:
+DELETE FROM category WHERE id = ?;
+
+selectAllTasks:
+SELECT * FROM task ORDER BY created_at DESC;
+
+selectTaskById:
+SELECT * FROM task WHERE id = ?;
+
+insertTask:
+INSERT INTO task(title, description, completed, due_at, created_at, category_id)
+VALUES (?, ?, ?, ?, ?, ?);
+
+updateTask:
+UPDATE task
+SET title = ?, description = ?, completed = ?, due_at = ?, category_id = ?
+WHERE id = ?;
+
+setTaskCompleted:
+UPDATE task SET completed = ? WHERE id = ?;
+
+deleteTask:
+DELETE FROM task WHERE id = ?;
+
+selectLastInsertRowid:
+SELECT last_insert_rowid() AS id;

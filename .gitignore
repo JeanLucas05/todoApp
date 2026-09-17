@@ -1,0 +1,17 @@
+*.iml
+.gradle
+/local.properties
+/.kotlin
+/.idea
+.DS_Store
+build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.apk
+*.aab
+*.hprof
+/bin
+/iosApp/iosApp.xcodeproj/xcshareddata
+/iosApp/iosApp.xcodeproj/xcuserdata
